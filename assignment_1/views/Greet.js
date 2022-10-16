@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View } from 'react-native';
 
-export default function IntroView() {
+export default function Greet() {
     return (
         <View style={styles.container}>
             <Text>Hello, SER 423! My name is Chris Harrel.</Text>

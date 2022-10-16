@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View } from 'react-native';
 
-export default function ThanksView() {
+export default function Thanks() {
     return (
         <View style={styles.container}>
             <Text>Thanks for using my app!</Text>
