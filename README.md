@@ -27,3 +27,13 @@ Course work for SER 423 Mobile Systems at Arizona State University
     ```
 
     - Open Expo app on device and scan QR code
+
+1. Run the expo project on the Android Emulator
+
+    1. Run GenyMotion
+    1. Start the virtual device
+    1. Run expo
+
+        ```shell
+        npm run android
+        ```
