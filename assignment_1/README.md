@@ -15,3 +15,18 @@ Take your completed Exercise 1 App and expand it by adding the following:
     1. It should then show you tapping the tab on View 2 and the App switching to View 1.
 1. Put your video in the folder with your App, and zip the entire folder.
 1. Submit this zip folder here in Canvas.
+
+## Usage
+
+1. Install dependencies
+
+   ```shell
+   npm install
+   ```
+
+1. Start Genymotion and optionally start a virtual device
+1. Run the Expo application as an Android app
+
+   ```shell
+   npm run android
+   ```
