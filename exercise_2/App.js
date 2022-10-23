@@ -1,20 +1,59 @@
+import React from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { Alert, StyleSheet, Text, View } from 'react-native';
+import Button from './Button';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+export default class App extends React.Component {
+  handleButtonPress() {
+    Alert.alert('Alert', 'You clicked this button!');
+  }
+
+  render() {
+    return (
+      <View style={styles.container}>
+        <Button style={styles.btn}>
+          My first button
+        </Button>
+        <Button success style={styles.btn}>
+          Success button
+        </Button>
+        <Button info style={styles.btn}>
+          Info button
+        </Button>
+        <Button danger rounded style={styles.btn}
+                onPress={this.handleButtonPress}>
+          Rounded button
+        </Button>
+      </View>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
   },
+  btn: {
+    margin: 10,
+  },
 });
+
+// export default function App() {
+//   return (
+//     <View style={styles.container}>
+//       <Text>Open up App.js to start working on your app!</Text>
+//       <StatusBar style="auto" />
+//     </View>
+//   );
+// }
+//
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     backgroundColor: '#fff',
+//     alignItems: 'center',
+//     justifyContent: 'center',
+//   },
+// });
