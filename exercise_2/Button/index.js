@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import {Text, TouchableOpacity} from 'react-native';
-import {Base, Default, Danger, Info, Success } from './styles';
+import {Base, Default, Danger, Info, Success, Primary, Secondary, Warning, Dark } from './styles';
 
 
 export default class Button extends Component {
   getTheme() {
-    const {danger, info, success} = this.props;
+    const {danger, info, success, primary, secondary, warning, dark} = this.props;
 
     if (info) {
       return Info
@@ -17,6 +17,22 @@ export default class Button extends Component {
 
     if (danger) {
       return Danger
+    }
+
+    if (primary) {
+      return Primary
+    }
+
+    if (secondary) {
+      return Secondary
+    }
+
+    if (warning) {
+      return Warning
+    }
+
+    if (dark) {
+      return Dark
     }
 
     return Default

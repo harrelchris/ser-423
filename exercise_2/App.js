@@ -11,19 +11,14 @@ export default class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Button style={styles.btn}>
-          My first button
-        </Button>
-        <Button success style={styles.btn}>
-          Success button
-        </Button>
-        <Button info style={styles.btn}>
-          Info button
-        </Button>
-        <Button danger rounded style={styles.btn}
-                onPress={this.handleButtonPress}>
-          Rounded button
-        </Button>
+        <Button style={styles.btn}>My first button</Button>
+        <Button success style={styles.btn}>Success button</Button>
+        <Button info style={styles.btn}>Info button</Button>
+        <Button danger rounded style={styles.btn} onPress={this.handleButtonPress}>Rounded button</Button>
+        <Button primary style={styles.btn}>Primary button</Button>
+        <Button secondary rounded style={styles.btn}>Secondary button</Button>
+        <Button warning style={styles.btn}>Warning button</Button>
+        <Button dark rounded style={styles.btn}>Dark button</Button>
       </View>
     );
   }
