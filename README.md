@@ -19,6 +19,23 @@ Course work for SER 423 Mobile Systems at Arizona State University
     expo init project_name
     ```
 
+## Run
+
+1. Run the expo project on the Android Emulator
+
+    1. Start the virtual device
+
+        ```shell
+        start "" "C:\Program Files\Genymobile\Genymotion\player.exe" --vm-name "Google Nexus 5"
+        ```
+
+    1. Run expo
+
+        ```shell
+        cd project_name
+        npm run android
+        ```
+
 1. Run the expo project as an Android app
 
     ```shell
@@ -28,12 +45,4 @@ Course work for SER 423 Mobile Systems at Arizona State University
 
     - Open Expo app on device and scan QR code
 
-1. Run the expo project on the Android Emulator
 
-    1. Run GenyMotion
-    1. Start the virtual device
-    1. Run expo
-
-        ```shell
-        npm run android
-        ```
