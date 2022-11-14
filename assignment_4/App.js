@@ -7,8 +7,9 @@ import {
   Text,
   TouchableOpacity,
   View,
-  Dimensions
 } from 'react-native';
+import {Picker} from "@react-native-picker/picker";
+
 
 
 const playlist = [
@@ -41,6 +42,39 @@ export default class App extends Component {
     volume: 1.0,
     currentTrackIndex: 0,
     isBuffering: false,
+
+    song0Rating: 'No Rating',
+    song1Rating: 'No Rating',
+    song2Rating: 'No Rating',
+  }
+
+  getRating() {
+    const { currentTrackIndex } = this.state;
+    if (currentTrackIndex === 0) {
+      return this.state.song0Rating
+    } else if (currentTrackIndex === 1) {
+      return this.state.song1Rating
+    } else {
+      return this.state.song2Rating
+    }
+  }
+
+  onRate(rating) {
+    console.log(rating)
+    const { currentTrackIndex } = this.state;
+    if (currentTrackIndex === 0) {
+      this.setState({
+        song0Rating: rating
+      })
+    } else if (currentTrackIndex === 1) {
+      this.setState({
+        song1Rating: rating
+      })
+    } else {
+      this.setState({
+        song2Rating: rating
+      })
+    }
   }
 
   async componentDidMount() {
@@ -68,12 +102,10 @@ export default class App extends Component {
       .setOnPlaybackStatusUpdate(
         this.onPlaybackStatusUpdate
       );
-    try {
-      await playbackInstance.loadAsync(source, status, false);
-      this.setState({
-        playbackInstance
-      });
-    } catch (e) {}
+    await playbackInstance.loadAsync(source, status, false);
+    this.setState({
+      playbackInstance
+    });
   }
 
   onPlaybackStatusUpdate = (status) => {
@@ -166,6 +198,19 @@ export default class App extends Component {
             <Feather name="skip-forward" size={32} color="#fff"/>
           </TouchableOpacity>
         </View>
+        <Picker
+          style={styles.input}
+          selectedValue={this.getRating()}
+          onValueChange={(rating, itemIndex) => {
+            this.onRate(rating)
+          }}>
+          <Picker.Item label="No Rating" value="No Rating" />
+          <Picker.Item label="1 Star" value="1 Star" />
+          <Picker.Item label="2 Stars" value="2 Stars" />
+          <Picker.Item label="3 Stars" value="3 Stars" />
+          <Picker.Item label="4 Stars" value="4 Stars" />
+          <Picker.Item label="5 Stars" value="5 Stars" />
+        </Picker>
       </View>
     );
   }
