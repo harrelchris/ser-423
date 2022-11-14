@@ -201,5 +201,12 @@ const styles = StyleSheet.create({
   },
   controls: {
     flexDirection: 'row'
-  }
+  },
+  input: {
+    backgroundColor: '#ecf0f1',
+    borderRadius: 3,
+    width: 300,
+    height: 40,
+    padding: 5,
+  },
 });
