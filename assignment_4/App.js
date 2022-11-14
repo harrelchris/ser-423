@@ -68,10 +68,12 @@ export default class App extends Component {
       .setOnPlaybackStatusUpdate(
         this.onPlaybackStatusUpdate
       );
-    await playbackInstance.loadAsync(source, status, false);
-    this.setState({
-      playbackInstance
-    });
+    try {
+      await playbackInstance.loadAsync(source, status, false);
+      this.setState({
+        playbackInstance
+      });
+    } catch (e) {}
   }
 
   onPlaybackStatusUpdate = (status) => {
