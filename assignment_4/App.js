@@ -3,14 +3,16 @@ import React, { Component } from 'react';
 import { Audio } from 'expo-av';
 import { Feather } from '@expo/vector-icons';
 import {
+  Alert,
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
 } from 'react-native';
 import {Picker} from "@react-native-picker/picker";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
-
+const key = "@MyApp:key";
 
 const playlist = [
   {
@@ -34,9 +36,9 @@ const playlist = [
 ];
 
 
-
 export default class App extends Component {
   state = {
+    text: "",
     isPlaying: false,
     playbackInstance: null,
     volume: 1.0,
@@ -47,6 +49,26 @@ export default class App extends Component {
     song1Rating: 'No Rating',
     song2Rating: 'No Rating',
   }
+
+  onLoad = async () => {
+    try {
+      const storedValue = await AsyncStorage.getItem(key);
+      this.setState({ storedValue });
+    } catch (error) {
+      Alert.alert("Error", "There was an error while loading the data");
+    }
+  };
+
+  onSave = async () => {
+    const { text } = this.state;
+
+    try {
+      await AsyncStorage.setItem(key, text);
+      Alert.alert("Saved", "Successfully saved on device");
+    } catch (error) {
+      Alert.alert("Error", "There was an error while saving the data");
+    }
+  };
 
   getRating() {
     const { currentTrackIndex } = this.state;
@@ -211,6 +233,12 @@ export default class App extends Component {
           <Picker.Item label="4 Stars" value="4 Stars" />
           <Picker.Item label="5 Stars" value="5 Stars" />
         </Picker>
+        <TouchableOpacity onPress={this.onSave} style={styles.button}>
+          <Text>Save locally</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={this.onLoad} style={styles.button}>
+          <Text>Load data</Text>
+        </TouchableOpacity>
       </View>
     );
   }
@@ -253,5 +281,11 @@ const styles = StyleSheet.create({
     width: 300,
     height: 40,
     padding: 5,
+  },
+  button: {
+    backgroundColor: '#f39c12',
+    padding: 10,
+    borderRadius: 3,
+    marginTop: 10,
   },
 });
