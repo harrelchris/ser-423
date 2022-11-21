@@ -14,7 +14,7 @@ import * as Location from "expo-location";
 export default class App extends Component {
   state = {
     notify: false,
-    message: "This is a notification!",
+    message: "",
     latitude: 33.307146,
     longitude: -111.68177,
   };
@@ -83,7 +83,7 @@ export default class App extends Component {
             title={"Current Location"}
             onPress={() => {
               this.setCurrentLocation();
-              this.setState({message: "Current Location"});
+              this.setState({message: "Changed to You"});
               this.toggleNotification();
             }}
           >Current Location</Button>
@@ -97,7 +97,7 @@ export default class App extends Component {
                 latitude: 33.307146,
                 longitude: -111.681177,
               });
-              this.setState({message: "POI 1"});
+              this.setState({message: "Changed to POI 1"});
               this.toggleNotification();
             }}
           >Current Location</Button>
@@ -111,7 +111,7 @@ export default class App extends Component {
                 latitude: 33.423204,
                 longitude: -111.939612,
               });
-              this.setState({message: "POI 2"});
+              this.setState({message: "Changed to POI 2"});
               this.toggleNotification();
             }}
           >Current Location</Button>
