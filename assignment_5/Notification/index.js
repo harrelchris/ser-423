@@ -19,10 +19,6 @@ export default class Notification extends Component {
     height: -1000,
   };
 
-  componentWillMount() {
-    this.animatedValue = new Animated.Value(0);
-  }
-
   componentDidMount() {
     this.startSlideIn();
   }
@@ -34,6 +30,7 @@ export default class Notification extends Component {
       duration: 500,
       easing: Easing.cubic,
       delay: autoHide ? delay : 0,
+      useNativeDriver: false,
     });
   }
 
