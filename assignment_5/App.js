@@ -1,19 +1,39 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { Component } from "react";
 import {
-  Text,
-  TouchableOpacity,
+  Button,
   StyleSheet,
   View,
   SafeAreaView,
 } from "react-native";
 import Notification from "./Notification";
+import MapView from "react-native-maps";
+import { Marker } from "react-native-maps";
+import * as Location from "expo-location";
 
 export default class App extends Component {
   state = {
     notify: false,
     message: "This is a notification!",
+    latitude: 33.307146,
+    longitude: -111.68177,
   };
+
+  async componentDidMount() {
+    await Location.requestForegroundPermissionsAsync();
+  }
+
+  async setCurrentLocation() {
+    Location.getLastKnownPositionAsync()
+      .then((data) => {
+        this.setState({
+          latitude: data.coords.latitude,
+          longitude: data.coords.longitude,
+        });
+      })
+      .catch((error) => {
+        console.error(error)})
+  }
 
   toggleNotification = () => {
     this.setState({
@@ -29,25 +49,72 @@ export default class App extends Component {
         onClose={this.toggleNotification}
       />
     ) : null;
+
     return (
-      <SafeAreaView>
-        <Text style={styles.toolbar}>Main toolbar</Text>
-        <View style={styles.content}>
-          <Text>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna.
-          </Text>
-          <TouchableOpacity
-            onPress={this.toggleNotification}
+      <SafeAreaView style={styles.container}>
+        {notify}
+        <MapView
+          style={styles.map}
+          initialRegion={{
+            latitude: this.state.latitude,
+            longitude: this.state.longitude,
+            latitudeDelta: 0.09,
+            longitudeDelta: 0.04,
+          }}
+          region={{
+            latitude: this.state.latitude,
+            longitude: this.state.longitude,
+            latitudeDelta: 0.09,
+            longitudeDelta: 0.04,
+          }}
+          showsUserLocation={true}
+        >
+          <Marker
+            coordinate={{
+              latitude: this.state.latitude,
+              longitude: this.state.longitude,
+            }}
+            image={require('./assets/you-are-here.png')}
+          ></Marker>
+        </MapView>
+        <View style={styles.btn}>
+          <Button
             style={styles.btn}
-          >
-            <Text style={styles.text}>Show notification</Text>
-          </TouchableOpacity>
-          <Text>
-            Sed ut perspiciatis unde omnis iste natus error sit accusantium
-            doloremque laudantium.
-          </Text>
-          {notify}
+            title={"Current Location"}
+            onPress={() => {
+              this.setCurrentLocation();
+              this.setState({message: "Current Location"});
+              this.toggleNotification();
+            }}
+          >Current Location</Button>
+        </View>
+        <View style={styles.btn}>
+          <Button
+            style={styles.btn}
+            title={"POI 1"}
+            onPress={() => {
+              this.setState({
+                latitude: 33.307146,
+                longitude: -111.681177,
+              });
+              this.setState({message: "POI 1"});
+              this.toggleNotification();
+            }}
+          >Current Location</Button>
+        </View>
+        <View style={styles.btn}>
+          <Button
+            style={styles.btn}
+            title={"POI 2"}
+            onPress={() => {
+              this.setState({
+                latitude: 33.423204,
+                longitude: -111.939612,
+              });
+              this.setState({message: "POI 2"});
+              this.toggleNotification();
+            }}
+          >Current Location</Button>
         </View>
       </SafeAreaView>
     );
@@ -55,25 +122,14 @@ export default class App extends Component {
 }
 
 const styles = StyleSheet.create({
-  toolbar: {
-    backgroundColor: "#8e44ad",
-    color: "#fff",
-    fontSize: 22,
-    padding: 20,
-    textAlign: "center",
+  container: {
+    flex: 1,
   },
-  content: {
-    padding: 10,
-    overflow: "hidden",
+  map: {
+    flex: 1,
+    elevation: -1,
   },
   btn: {
-    margin: 10,
-    backgroundColor: "#9b59b6",
-    borderRadius: 3,
-    padding: 10,
-  },
-  text: {
-    textAlign: "center",
-    color: "#fff",
+    padding: 5,
   },
 });
