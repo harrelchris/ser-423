@@ -80,13 +80,13 @@ export default class App extends Component {
         <View style={styles.btn}>
           <Button
             style={styles.btn}
-            title={"Current Location"}
+            title={"You"}
             onPress={() => {
               this.setCurrentLocation();
               this.setState({message: "Changed to You"});
               this.toggleNotification();
             }}
-          >Current Location</Button>
+          ></Button>
         </View>
         <View style={styles.btn}>
           <Button
@@ -100,7 +100,7 @@ export default class App extends Component {
               this.setState({message: "Changed to POI 1"});
               this.toggleNotification();
             }}
-          >Current Location</Button>
+          ></Button>
         </View>
         <View style={styles.btn}>
           <Button
@@ -114,7 +114,7 @@ export default class App extends Component {
               this.setState({message: "Changed to POI 2"});
               this.toggleNotification();
             }}
-          >Current Location</Button>
+          ></Button>
         </View>
       </SafeAreaView>
     );
