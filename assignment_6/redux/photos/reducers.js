@@ -10,7 +10,7 @@ export default (state = initialState, action) => {
     case FETCH_PHOTOS:
       return {
         ...state,
-        photos: [...action.payload],
+        photos: [action.payload],
       };
     case ADD_PHOTO:
       return {

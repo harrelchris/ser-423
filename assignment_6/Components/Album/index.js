@@ -81,12 +81,13 @@ class Album extends Component {
       url: photos[this.state.index].url,
       thumbnailUrl: photos[this.state.index].thumbnail,
     };
+    this.props.addPhoto(photo);
+
     if (this.state.index === photos.length - 1) {
       this.state.index = 0;
     } else {
       this.state.index++;
     }
-    this.props.addPhoto(photo);
   };
 
   removePhoto = (photo) => {
