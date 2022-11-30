@@ -18,36 +18,6 @@ import {
 } from '../../redux/photos/actions';
 import store from "../../redux";
 
-const threeAssignmentImages = [];
-
-const Container = glamorous.view({
-  flex: 1,
-  justifyContent: "center",
-  alignItems: "center",
-  backgroundColor: "#fff",
-});
-
-const Headline = glamorous.text({
-  fontSize: 30,
-  paddingBottom: 8,
-});
-
-const SubHeading = glamorous.text({
-  fontSize: 26,
-  paddingBottom: 8,
-});
-
-const ButtonText = glamorous.text({
-  fontSize: 18,
-  color: "white",
-});
-
-const Button = glamorous.touchableHighlight({ padding: 10 }, (props) => ({
-  backgroundColor: props.warning ? "red" : "blue",
-}));
-
-const { ImageGlam } = glamorous;
-
 const AlbumText = glamorous.text({
   fontSize: 18,
   color: "#000",
@@ -68,33 +38,33 @@ const ThumbnailURLText = glamorous.text({
   color: "#CFC",
 });
 
-const photos = {
-  1: {
+const photos = [
+  {
     albumId: 1,
     title: 1,
     url: "https://picsum.photos/200/300",
     thumbnail: "https://i.picsum.photos/id/23/3887/4899.jpg?hmac=2fo1Y0AgEkeL2juaEBqKPbnEKm_5Mp0M2nuaVERE6eE",
     id: 1
   },
-  2: {
+  {
     albumId: 2,
     title: 2,
     url: "https://picsum.photos/200/300?grayscale",
     thumbnail: "https://i.picsum.photos/id/10/2500/1667.jpg?hmac=J04WWC_ebchx3WwzbM-Z4_KC_LeLBWr5LZMaAkWkF68",
     id: 2
   },
-  3: {
+  {
     albumId: 3,
     title: 3,
     url: "https://picsum.photos/200/300/?blur=1",
     thumbnail: "https://i.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U",
     id: 3
-  },
-}
+  }
+]
 
 class Album extends Component {
   state = {
-    index: 1,
+    index: 0,
   };
 
   componentDidMount() {
@@ -110,8 +80,8 @@ class Album extends Component {
       url: photos[this.state.index].url,
       thumbnailUrl: photos[this.state.index].thumbnail,
     };
-    if (this.state.index === 3) {
-      this.state.index = 1;
+    if (this.state.index === 2) {
+      this.state.index = 0;
     } else {
       this.state.index++;
     }
