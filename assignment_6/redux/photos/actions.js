@@ -20,14 +20,23 @@ export const removePhoto = (photo) => {
 export const fetchPhotos = () => {
   return {
     type: FETCH_PHOTOS,
-    payload: [
-      {
-        albumId: 1,
-        title: "First Picture (Dog)",
-        url: "https://picsum.photos/id/237/200/300",
-        thumbnailUrl: "https://picsum.photos/id/237/200/300",
-        id: 1,
-      },
-    ],
-  };
-};
+    payload: {
+      "photos": [
+        {
+          "albumId": 4,
+          "title": "dolore esse a in eos sed",
+          "url": "http://placehold.it/600/f783bd",
+          "thumbnailUrl": "http://placehold.it/150/d83ea2",
+          "id": 2
+        },
+        {
+          "albumId": 5,
+          "title": "dolore esse a in eos sed",
+          "url": "http://placehold.it/600/8e6eef",
+          "thumbnailUrl": "http://placehold.it/150/bf6d2a",
+          "id": 3
+        }
+      ]
+    }
+  }
+}
