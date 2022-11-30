@@ -19,47 +19,48 @@ import {
 import store from "../../redux";
 
 const AlbumText = glamorous.text({
-  fontSize: 18,
+  fontSize: 24,
   color: "#000",
 });
 
 const TitleText = glamorous.text({
-  fontSize: 28,
+  fontSize: 30,
   color: "#333",
 });
 
 const URLText = glamorous.text({
-  fontSize: 8,
+  fontSize: 12,
   color: "#5F5",
 });
 
 const ThumbnailURLText = glamorous.text({
-  fontSize: 8,
+  fontSize: 12,
   color: "#CFC",
 });
 
 const photos = [
   {
-    albumId: 1,
-    title: 1,
-    url: "https://picsum.photos/200/300",
-    thumbnail: "https://i.picsum.photos/id/23/3887/4899.jpg?hmac=2fo1Y0AgEkeL2juaEBqKPbnEKm_5Mp0M2nuaVERE6eE",
+    albumId: "art001e000607",
+    title: "Flight Day 9: Orion in Blue",
+    url: "https://images-assets.nasa.gov/image/art001e000607/art001e000607~medium.jpg",
+    thumbnail: "https://images-assets.nasa.gov/image/art001e000607/art001e000607~thumb.jpg",
+    id: 0
+  },
+  {
+    albumId: "iss068e025141",
+    title: "SpaceX Dragon cargo craft",
+    url: "https://images-assets.nasa.gov/image/iss068e025141/iss068e025141~medium.jpg",
+    thumbnail: "https://images-assets.nasa.gov/image/iss068e025141/iss068e025141~thumb.jpg",
     id: 1
   },
   {
-    albumId: 2,
-    title: 2,
-    url: "https://picsum.photos/200/300?grayscale",
-    thumbnail: "https://i.picsum.photos/id/10/2500/1667.jpg?hmac=J04WWC_ebchx3WwzbM-Z4_KC_LeLBWr5LZMaAkWkF68",
+    albumId: "art001e000672",
+    title: "Artemis I Flight Day 13",
+    url: "https://images-assets.nasa.gov/image/art001e000672/art001e000672~medium.jpg",
+    thumbnail: "https://images-assets.nasa.gov/image/art001e000672/art001e000672~thumb.jpg",
     id: 2
   },
-  {
-    albumId: 3,
-    title: 3,
-    url: "https://picsum.photos/200/300/?blur=1",
-    thumbnail: "https://i.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U",
-    id: 3
-  }
+
 ]
 
 class Album extends Component {
@@ -80,7 +81,7 @@ class Album extends Component {
       url: photos[this.state.index].url,
       thumbnailUrl: photos[this.state.index].thumbnail,
     };
-    if (this.state.index === 2) {
+    if (this.state.index === photos.length - 1) {
       this.state.index = 0;
     } else {
       this.state.index++;
@@ -96,16 +97,16 @@ class Album extends Component {
     return (
       <SafeAreaView style={styles.container}>
         <AlbumText style={styles.toolbar}>
-          <Text>Album {photos[this.state.index].albumId}</Text>
+          <Text>{photos[this.state.index].albumId}</Text>
         </AlbumText>
         <TitleText style={styles.title}>
-          <Text>Title {photos[this.state.index].title}</Text>
+          <Text>{photos[this.state.index].title}</Text>
         </TitleText>
         <URLText style={styles.url}>
-          <Text>URL {photos[this.state.index].url}</Text>
+          <Text>{photos[this.state.index].url}</Text>
         </URLText>
         <ThumbnailURLText style={styles.thumbnail}>
-          <Text>Thumbnail {photos[this.state.index].thumbnail}</Text>
+          <Text>{photos[this.state.index].thumbnail}</Text>
         </ThumbnailURLText>
 
         <ScrollView>
